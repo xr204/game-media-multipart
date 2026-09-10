@@ -39,3 +39,7 @@ The example above is deliberately small. For real use, there are a few things to
 **Game Media Multipart: Storage**
 - **Game Media Multipart:** Create the bucket with the right ACL/region up front (`POST /v1/storage/bucket/create`); set CORS for browser uploads (`POST /v1/storage/bucket/set_cors`).
 - **Game Media Multipart:** Presigned URLs expire, so set the shortest workable lifetime. Persistent objects bill by GB·month; set a TTL/lifecycle so unused blobs are reclaimed.
+
+## Further reading
+
+- [User Documents: Direct Browser Uploads to Object Storage or a Server Proxy?](docs/user-documents-direct-browser-uploads-to-object-s-n5t0oh.md)
