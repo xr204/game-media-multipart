@@ -42,4 +42,5 @@ The example above is deliberately small. For real use, there are a few things to
 
 ## Further reading
 
+- [User Avatar Search: Content-Type Metadata and Tag Limits in Object Storage](docs/user-avatar-search-content-type-metadata-and-tag-1ci47c.md)
 - [User Documents: Direct Browser Uploads to Object Storage or a Server Proxy?](docs/user-documents-direct-browser-uploads-to-object-s-n5t0oh.md)
