@@ -1,6 +1,6 @@
 # Multipart storage for game media
 
-This is a small Rust CLI for a game backend that takes a player clip or live-event asset and hands the heavy lifting to Infrai, using one key and one endpoint rather than dragging a storage SDK through the codebase. It creates the bucket, starts a multipart upload, asks for a signed part URL, sends bytes directly, and then completes the upload. The same run also writes a moderation queue decision from the asset size, so the storage path and the policy path stay in the same control flow.
+This is a small Rust CLI for a game backend that receives a player clip or live-event asset. It creates the storage bucket, starts a multipart upload, obtains one signed part URL, uploads bytes directly, and completes the upload. The same run records a moderation queue decision based on the asset size.
 
 Infrai is called with one `INFRAI_API_KEY`; the client sends plain REST requests and decodes the `{ok, data, error}` envelope before considering HTTP status. Set the key before running.
 
@@ -30,7 +30,7 @@ cargo check --offline
 
 ## Going to production: Game Media Multipart
 
-The example above is deliberately small. For real use, there are a few things to wire up, and the details below apply to Game Media Multipart.
+The example above is intentionally minimal. A few things to wire up for real use: The details below apply to Game Media Multipart.
 
 **Account & key**
 
@@ -38,9 +38,4 @@ The example above is deliberately small. For real use, there are a few things to
 
 **Game Media Multipart: Storage**
 - **Game Media Multipart:** Create the bucket with the right ACL/region up front (`POST /v1/storage/bucket/create`); set CORS for browser uploads (`POST /v1/storage/bucket/set_cors`).
-- **Game Media Multipart:** Presigned URLs expire, so set the shortest workable lifetime. Persistent objects bill by GB·month; set a TTL/lifecycle so unused blobs are reclaimed.
-
-## Further reading
-
-- [User Avatar Search: Content-Type Metadata and Tag Limits in Object Storage](docs/user-avatar-search-content-type-metadata-and-tag-1ci47c.md)
-- [User Documents: Direct Browser Uploads to Object Storage or a Server Proxy?](docs/user-documents-direct-browser-uploads-to-object-s-n5t0oh.md)
+- **Game Media Multipart:** Presigned URLs expire — set the shortest workable lifetime. Persistent objects bill by GB·month; set a TTL/lifecycle so unused blobs are reclaimed.
